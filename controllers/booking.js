@@ -68,7 +68,7 @@ exports.editBooking = (req, res, next) => {
 }
 
 exports.getBookings = (req, res, next) => {
-  Booking.find().then(document => {
+  Booking.find({status:{$ne:"Service Completed"} }).then(document => {
     res.status(200).json({
       message:"Bookings fetched successfully!",
       bookings:document.reverse()
